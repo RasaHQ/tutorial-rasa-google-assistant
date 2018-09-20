@@ -1,4 +1,4 @@
-# Place Finder assistant migrated to Rasa
+# Place Finder assistant
 
 This repository contains the code of the place finder assistant.
 
@@ -19,12 +19,15 @@ python -m spacy download en
 ## What's in this repository
 The repository consists of the following files and directories:  
 
-- **data** directory contains the NLU data exported from DialogFlow and stories.md file which contains training stories for Rasa Core model.  
+- **data/nlu_data.md** - training data examples for Rasa NLU model
+- **data/stories.md** - training data examples for Rasa Core model
 - **actions.py** the code of the custom action used to retrieve data from Google Places API.
 - **config.yml** contains the configuration of NLU processing pipeline.
 - **credentials.yml** is a file where you should place your Google Places API key.
 - **domain.yml** file contains the domain configuration of the assistant.
 - **endpoints.yml** contains the webhook configuration for the custom action.
+- **ga_connector.py** contains the code of Rasa-Google Assistant connector.
+- **run_app.py** the code which can be used to launch the Rasa agent using GoogleAssistant connector.
 
 
 ## How to use this repository  
