@@ -11,7 +11,7 @@ This repository consists of the following files and directories:
 
 ## How to use this repository?
 
-The best way to use this repository is by following a step-by-step tutorial on how to integrate the Rasa assistant to Google Assistant. If you choose to use a Place Finder assistant to follow the tutorial, you can find the installation instructions and requirements.txt file inside the **place_finder** directory of this repository.
+The best way to use this repository is to follow a step-by-step tutorial on how to integrate the Rasa assistant to Google Assistant. If you choose to use a Place Finder assistant to follow the tutorial, you can find the installation instructions and requirements.txt file inside the **place_finder** directory of this repository.
 
 ## Let us know how you are getting on!
 
