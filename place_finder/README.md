@@ -1,10 +1,10 @@
 # Place Finder assistant
 
-This repository contains the code of the place finder assistant.
+This repository contains the code of the Rasa-powered Place Finder assistant.
 
 ## Setup and installation
 
-In order to Run this assistant, you will need Rasa NLU, Rasa Core libraries and a few additional dependencies. You can install them all by running the following command:  
+In order to run this assistant, you will need Rasa NLU, Rasa Core libraries and a few additional dependencies. You can install them all by running the following command:  
 
 ```
 pip install -r requirements.txt
