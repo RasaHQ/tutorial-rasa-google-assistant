@@ -5,11 +5,11 @@ from __future__ import unicode_literals
 
 import logging
 
-from flask import Blueprint, request, jsonify
-import requests
+from flask import Flask, Response, Blueprint, request, jsonify
 from rasa_core.channels.channel import UserMessage, OutputChannel
 from rasa_core.channels.channel import InputChannel
 from rasa_core.channels.channel import CollectingOutputChannel
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -31,8 +31,7 @@ class GoogleConnector(InputChannel):
     #    self.out_channel = CustomOutput(url, access_token)
 
     def blueprint(self, on_new_message):
-        from flask import Flask, request, Response
-        import json	    
+	    
         google_webhook = Blueprint('google_webhook', __name__)
 
         @google_webhook.route("/", methods=['GET'])
