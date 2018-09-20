@@ -1,0 +1,61 @@
+slots:
+ query:
+   type: text
+ number:
+   type: text
+ rating:
+   type: unfeaturized
+ address:
+   type: unfeaturized
+ opening_hours:
+   type: unfeaturized
+ location_match:
+   type: categorical
+   values:
+   - none
+   - one
+
+
+intents:
+ - greet
+ - thanks
+ - goodbye
+ - place_search
+ - opening_hours
+ - address
+ - rating
+ - inform
+ 
+
+entities:
+ - query
+ - number
+
+templates:
+  utter_greet:
+    - "Hello! I am a places search assistant. I can help you find places wherever you are, provide information about the location like opening hours, rating, address. So what are you looking for?"
+  utter_goodbye:
+    - "Talk to you later!"
+  utter_thanks:
+    - "You are very welcome."
+  utter_what_radius:
+    - "Within what radius?"
+  utter_rating:
+    - "The rating is {rating}"
+  utter_address:
+    - "The address is {address}."
+  utter_opening_hours:
+    - "The place is {opening_hours}"
+  utter_no_results:
+    - "Sorry, I couldn't find anything."
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_thanks
+  - utter_what_radius
+  - utter_rating
+  - utter_opening_hours
+  - utter_address
+  - utter_no_results
+  - action_place_search

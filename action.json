@@ -1,0 +1,41 @@
+{
+   "actions": [
+      {
+        "description": "Default Welcome Intent",
+        "name": "MAIN",
+        "fulfillment": {
+          "conversationName": "welcome"
+        },
+        "intent": {
+          "name": "actions.intent.MAIN",
+          "trigger": {
+            "queryPatterns":["talk to Place Finder"]
+          }
+        }
+      },
+	  {
+        "description": "Rasa Intent",
+        "name": "TEXT",
+        "fulfillment": {
+          "conversationName": "rasa_intent"
+        },
+        "intent": {
+          "name": "actions.intent.TEXT",
+          "trigger": {
+            "queryPatterns":[]
+          }
+        }
+      }],
+    "conversations": {
+      "welcome": {
+        "name": "welcome",
+        "url": "https://2b4204d0.ngrok.io/webhooks/google_home/webhook",
+        "fulfillmentApiVersion": 2
+    },
+      "rasa_intent": {
+        "name": "rasa_intent",
+        "url": "https://2b4204d0.ngrok.io/webhooks/google_home/webhook",
+        "fulfillmentApiVersion": 2
+    }
+  }
+}
