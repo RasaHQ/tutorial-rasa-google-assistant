@@ -33,21 +33,21 @@ entities:
 
 templates:
   utter_greet:
-    - "Hello! I am a places search assistant. I can help you find places wherever you are, provide information about the location like opening hours, rating, address. So what are you looking for?"
+    - text: "Hello! I am a places search assistant. I can help you find places wherever you are, provide information about the location like opening hours, rating, address. So what are you looking for?"
   utter_goodbye:
-    - "Talk to you later!"
+    - text: "Talk to you later!"
   utter_thanks:
-    - "You are very welcome."
+    - text: "You are very welcome."
   utter_what_radius:
-    - "Within what radius?"
+    - text: "Within what radius?"
   utter_rating:
-    - "The rating is {rating}"
+    - text: "The rating is {rating}"
   utter_address:
-    - "The address is {address}."
+    - text: "The address is {address}."
   utter_opening_hours:
-    - "The place is {opening_hours}"
+    - text: "The place is {opening_hours}"
   utter_no_results:
-    - "Sorry, I couldn't find anything."
+    - text: "Sorry, I couldn't find anything."
 
 actions:
   - utter_greet

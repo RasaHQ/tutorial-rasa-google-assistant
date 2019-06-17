@@ -1,8 +1,22 @@
+language: en
 pipeline:
-- name: "nlp_spacy"
-- name: "tokenizer_spacy"
-- name: "ner_crf"
-- name: "intent_featurizer_spacy"
-- name: "intent_classifier_sklearn"
-- name: "ner_duckling"
-  dimensions: ['number']
+- name: "SpacyNLP"
+- name: "SpacyTokenizer"
+- name: "SpacyFeaturizer"
+- name: "CRFEntityExtractor"
+- name: "SklearnIntentClassifier"
+- name: DucklingHTTPExtractor
+  url: "http://localhost:8000"
+  # dimensions to extract
+  dimensions: ["number"]
+policies:
+- batch_size: 50
+  epochs: 200
+  max_training_samples: 300
+  name: KerasPolicy
+- fallback_action_name: action_default_fallback
+  name: FallbackPolicy
+- max_history: 5
+  name: MemoizationPolicy
+- name: FormPolicy
+- name: MappingPolicy
