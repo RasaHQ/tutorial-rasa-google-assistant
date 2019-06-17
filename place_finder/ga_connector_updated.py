@@ -30,7 +30,7 @@ from rasa.core import utils
 logger = logging.getLogger(__name__)
 
 
-juste = 'hello'
+
 		
 class GoogleConnector(InputChannel):
     """A custom http input channel.
@@ -45,9 +45,9 @@ class GoogleConnector(InputChannel):
 
     def __init__(
         self,
-        errors_ignore_retry: Optional[List[Text]] = None,
+        username: Optional[Text] = None,
     ) -> None:
-        self.errors_ignore_retry = errors_ignore_retry or ("http_timeout",)
+        self.username = username
 
 
     @staticmethod
