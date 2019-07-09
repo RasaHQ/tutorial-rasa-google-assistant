@@ -1,18 +1,16 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import logging
-
-from flask import Flask, Response, Blueprint, request, jsonify
-from rasa_core.channels.channel import UserMessage, OutputChannel
-from rasa_core.channels.channel import InputChannel
-from rasa_core.channels.channel import CollectingOutputChannel
 import json
+from sanic import Blueprint, response
+from sanic.request import Request
+from typing import Text, Optional, List, Dict, Any
+
+from rasa.core.channels.channel import UserMessage, OutputChannel
+from rasa.core.channels.channel import InputChannel
+from rasa.core.channels.channel import CollectingOutputChannel
+
+
 
 logger = logging.getLogger(__name__)
-
 
 
 		
@@ -27,52 +25,54 @@ class GoogleConnector(InputChannel):
     def name(cls):
         return "google_home"
 
-    #def __init__(self):
-    #    self.out_channel = CustomOutput(url, access_token)
 
     def blueprint(self, on_new_message):
 	    
         google_webhook = Blueprint('google_webhook', __name__)
 
         @google_webhook.route("/", methods=['GET'])
-        def health():
-            return jsonify({"status": "ok"})
+        async def health(request):
+            return response.json({"status": "ok"})
 
         @google_webhook.route("/webhook", methods=['POST'])
-        def receive():
-            payload = json.loads(request.data)		
-            sender_id = payload['user']['userId']
+        async def receive(request):
+            payload = request.json	
             intent = payload['inputs'][0]['intent'] 			
-            text = payload['inputs'][0]['rawInputs'][0]['query'] 		
+            text = payload['inputs'][0]['rawInputs'][0]['query'] 
+	
             if intent == 'actions.intent.MAIN':	
-                message = "<speak>Hello! <break time=\"1\"/> Welcome to the Rasa-powered Google Assistant skill. You can start by saying hi."			 
+                message = "Hello! Welcome to the Rasa-powered Google Assistant skill. You can start by saying hi."			 
             else:
                 out = CollectingOutputChannel()			
-                on_new_message(UserMessage(text, out, sender_id))
+                await on_new_message(UserMessage(text, out))
                 responses = [m["text"] for m in out.messages]
-                message = responses[0]	
-            r = json.dumps(
-                {
-                  "conversationToken": "{\"state\":null,\"data\":{}}",
+                message = responses[0]
+            r = {
                   "expectUserResponse": 'true',
                   "expectedInputs": [
                     {
-                      "inputPrompt": {
-                       "initialPrompts": [
+                      "possibleIntents": [
                         {
-                          "ssml": message
+                          "intent": "actions.intent.TEXT"
                         }
-                      ]
-                     },
-                    "possibleIntents": [
-                    {
-                      "intent": "actions.intent.TEXT"
+                    ],
+                    "inputPrompt": {
+                      "richInitialPrompt": {
+                        "items": [
+                          {
+                            "simpleResponse": {
+                              "textToSpeech": message,
+                              "displayText": message
+                              }
+                            }
+                          ]
+                        }
+                      }
                     }
-                   ]
-                  }
-                 ]
-                })
-            return r				
+                  ]
+                }
+
+            return response.json(r)				
           		
         return google_webhook
 
