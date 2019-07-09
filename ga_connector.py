@@ -23,7 +23,7 @@ class GoogleConnector(InputChannel):
 
     @classmethod
     def name(cls):
-        return "google_home"
+        return "google_assistant"
 
 
     def blueprint(self, on_new_message):
