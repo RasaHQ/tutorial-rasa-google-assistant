@@ -93,7 +93,7 @@
 - I want to know the rating 
 
 
-## itent: inform
+## intent: inform
 - 10 meters 
 - 100 meters
 - 1500
