@@ -13,7 +13,7 @@ This repository consists of the following files and directories:
 
 The best way to use this repository is to follow a step-by-step tutorial on how to integrate the Rasa assistant to Google Assistant. If you choose to use a Place Finder assistant to follow the tutorial, make sure to install Rasa by using the command below:  
 ```
-pip install rasa-x --extra-index-url https://pypi.rasa.com/simple
+pip3 install rasa
 ```
 
 ## Let us know how you are getting on!
